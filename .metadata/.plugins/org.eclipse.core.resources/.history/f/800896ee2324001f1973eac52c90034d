@@ -1,0 +1,9 @@
+package com.example.demospringfirestore.service.api;
+
+import com.example.demospringfirestore.commons.GenericServiceAPI;
+import com.example.demospringfirestore.dto.UsuarioDTO;
+import com.example.demospringfirestore.model.Usuario;
+
+public interface UsuarioServiceAPI extends GenericServiceAPI<Usuario, UsuarioDTO> {
+
+}

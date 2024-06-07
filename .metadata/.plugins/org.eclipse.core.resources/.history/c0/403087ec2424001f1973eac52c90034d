@@ -1,0 +1,36 @@
+package com.example.demospringfirestore.controller;
+
+import com.example.demospringfirestore.dto.UsuariosDTO;
+import com.example.demospringfirestore.service.api.UsuariosServiceAPI;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/usuario/api/v1")
+public class UsuariosController {
+
+    @Autowired
+    private UsuariosServiceAPI usuarioServiceAPI;
+
+    @GetMapping("/all")
+    public List<UsuariosDTO> getAllUsuarios() {
+        return usuariosServiceAPI.getAll();
+    }
+
+    @PostMapping("/save/{id}")
+    public String saveUsuario(@PathVariable("id") String id, @RequestBody UsuarioDTO usuario) {
+        if (id.equals("null")) {
+            id = usuarioServiceAPI.save(usuario);
+        } else {
+            usuarioServiceAPI.update(id, usuario);
+        }
+        return id;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteUsuario(@PathVariable("id") String id) {
+        usuariosServiceAPI.delete(id);
+    }
+}

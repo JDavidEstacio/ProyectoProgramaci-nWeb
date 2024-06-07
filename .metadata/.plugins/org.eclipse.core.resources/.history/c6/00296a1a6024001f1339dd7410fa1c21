@@ -1,0 +1,27 @@
+package com.example.demospringfirestore.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demospringfirestore.commons.GenericServiceImpl;
+import com.example.demospringfirestore.dto.UsuariosDTO;
+import com.example.demospringfirestore.model.Usuarios;
+import com.example.demospringfirestore.service.api.UsuariosServiceAPI;
+import com.google.cloud.firestore.CollectionReference;
+
+@Service
+public class UsuariosServiceImpl extends GenericServiceImpl<UsuariosDTO, UsuariosDTO> implements UsuariosServiceAPI {
+    
+    private final CollectionReference usuariosCollection;
+
+    @Autowired
+    public UsuariosServiceImpl(CollectionReference usuariosCollection) {
+        super(UsuariosDTO.class);
+        this.usuariosCollection = usuariosCollection;
+    }
+
+    @Override
+    public CollectionReference getCollection() {
+        return usuariosCollection;
+    }
+}
